@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Pass data to windows</title>
+
+	<script type="text/javascript">
+		
+		function  dyn_window() 
+		{
+			var title = "My Title";
+			var name = document.f.txtName.value;
+			var address = document.f.txtAddress.value;
+			var courses = document.f.txtCourses.value;
+			var sex = document.f.rdoSex.value;;
+			var subjects = "";
+
+			for(j = 0; j<document.f.chkSubject.length; j++)
+			{
+				if(document.f.chkSubject[j].checked)
+				{
+					subjects = document.f.chkSubject[j].value;
+				}
+			}
+
+			var a=open('','','width=400,height=350')
+
+			with(a.document)
+			{
+				write("<html>");
+				write("<head><title>"+title+"</title></head>");
+				write("<body>");
+				write("Name:"+name+"<br>");
+				write("Address:"+address+"<br>");
+				write("Courses:"+courses+"<br>");
+				write("Sex:"+sex+"<br>");
+				write("Subject:"+subjects+"<br>");
+				write("<input type='button' value='Close' onclick='self.close();'>");
+				write("<input type='button' value='Print' onclick='self.print();'>");
+				write("</body>");
+				write("</html>");
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<form method="POST" name="f" style="width: 200px; margin: 0px auto; border: 1px solid black; padding: 10px;">
+		
+		<div>
+			Name<br>
+			<input type="text" name="txtName">
+		</div>
+
+		<div>
+			Address<br>
+			<textarea name="txtAddress"></textarea>
+		</div>
+
+		<div>
+			Courses<br>
+			<select name="txtCourses">
+				<option value="MBA">M.B.A</option>
+				<option value="BBA">B.B.A</option>
+				<option value="CSE">CSE</option>
+				<option value="EEE">EEE</option>
+			</select>
+		</div>
+
+		<div>
+			Sex<br>
+			Male<input type="radio" name="rdoSex" value="Male">
+			Female<input type="radio" name="rdoSex" value="Female">
+		</div>
+
+		<div>
+			Subject<br>
+			English<input type="checkbox" name="chkSubject" value="English">
+			Bangla<input type="checkbox" name="chkSubject" value="Bangla">
+		</div>
+
+		<div>
+			<input type="button" name="btnObject" value="Submit" onclick="dyn_window()">
+		</div>
+	</form>
+
+</body>
+</html>
